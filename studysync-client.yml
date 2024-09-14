@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service-k8s
+  labels:
+    name: frontend-service-k8s
+spec:
+  ports:
+    - nodePort: 30162
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: frontend-service-k8s
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-service-k8s
+spec:
+  selector:
+    matchLabels:
+      app: frontend-service-k8s
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: frontend-service-k8s
+    spec:
+      containers:
+        - name: frontend-service-k8s
+          image: jahidem/studysync-client
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NEXT_PUBLIC_HOSTNAME_DB
+              valueFrom:
+                secretKeyRef:
+                  key: hostname_db
+                  name: client-credentials
+            - name: NEXT_PUBLIC_HOSTNAME_SERVER
+              valueFrom:
+                secretKeyRef:
+                  key: hostname_server
+                  name: client-credentials
+            - name: NEXT_PUBLIC_HOSTNAME_AI
+              valueFrom:
+                secretKeyRef:
+                  key: hostname_ai
+                  name: client-credentials
