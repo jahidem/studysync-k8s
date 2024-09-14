@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: studysync-configmap
+data:
+  hostname_db: "http://127.0.0.1:30163"
+  hostname_server: "http://127.0.0.1:30162"
+  hostname_ai: "http://127.0.0.1:30161"

@@ -36,16 +36,16 @@ spec:
           env:
             - name: NEXT_PUBLIC_HOSTNAME_DB
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: hostname_db
-                  name: client-credentials
+                  name: studysync-configmap
             - name: NEXT_PUBLIC_HOSTNAME_SERVER
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: hostname_server
-                  name: client-credentials
+                  name: studysync-configmap
             - name: NEXT_PUBLIC_HOSTNAME_AI
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: hostname_ai
-                  name: client-credentials
+                  name: studysync-configmap
