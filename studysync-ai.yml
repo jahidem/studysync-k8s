@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: studysync-ai
+  labels:
+    name: studysync-ai
+spec:
+  ports:
+    - nodePort: 30161
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app: studysync-ai
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studysync-ai
+spec:
+  selector:
+    matchLabels:
+      app: studysync-ai
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: studysync-ai
+    spec:
+      containers:
+        - name: studysync-ai
+          image: jahidem/studysync-ai
+          ports:
+            - containerPort: 8000
+          env:
+            - name: GEMINI_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: gemini_api_key
+                  name: studysync-configmap
+            - name: GOOGLE_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: google_api_key
+                  name: studysync-configmap
+            - name: QDRANT_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: qdrant_api_key
+                  name: studysync-configmap
+            - name: QDRANT_CLIENT_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: qdrant_client_url
+                  name: studysync-configmap

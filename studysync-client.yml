@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-service-k8s
+  name: studysync-frontend
   labels:
-    name: frontend-service-k8s
+    name: studysync-frontend
 spec:
   ports:
     - nodePort: 30162
@@ -11,25 +11,25 @@ spec:
       targetPort: 3000
       protocol: TCP
   selector:
-    app: frontend-service-k8s
+    app: studysync-frontend
   type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-service-k8s
+  name: studysync-frontend
 spec:
   selector:
     matchLabels:
-      app: frontend-service-k8s
-  replicas: 2
+      app: studysync-frontend
+  replicas: 1
   template:
     metadata:
       labels:
-        app: frontend-service-k8s
+        app: studysync-frontend
     spec:
       containers:
-        - name: frontend-service-k8s
+        - name: studysync-frontend
           image: jahidem/studysync-client
           ports:
             - containerPort: 3000

@@ -6,3 +6,7 @@ data:
   hostname_db: "http://127.0.0.1:30163"
   hostname_server: "http://127.0.0.1:30162"
   hostname_ai: "http://127.0.0.1:30161"
+  gemini_api_key: "AIzaSyCU-eiU0fO15XyHkRohPohVOIhFOK6h6k8"
+  google_api_key: "AIzaSyCU-eiU0fO15XyHkRohPohVOIhFOK6h6k8"
+  qdrant_api_key: "TLl3-n3maaMnmTSC02QA8HFtSoHrh7qTfc_CX4q9JZzMUXLi-h7UqQ"
+  qdrant_client_url: "https://d8262b90-3110-4a1e-addf-170fffdf5a5a.us-east4-0.gcp.cloud.qdrant.io"
