@@ -49,3 +49,8 @@ spec:
                 configMapKeyRef:
                   key: hostname_ai
                   name: studysync-configmap
+        - name: proxy
+          image: jahidem/studysync-client-proxy
+          ports:
+            - containerPort: 30161
+            - containerPort: 30163

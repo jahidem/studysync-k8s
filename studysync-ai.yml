@@ -13,7 +13,23 @@ spec:
   selector:
     app: studysync-ai
   type: NodePort
+
 ---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: studysync-ai-clusterip
+spec:
+  clusterIP: None
+  ports:
+    - targetPort: 8000
+      port: 30161
+  selector:
+    app: studysync-ai
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
